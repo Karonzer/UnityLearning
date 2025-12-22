@@ -417,6 +417,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DangoAnimals (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5721377125989570708, guid: 3a78354944caf6c4595edacf4244b950, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721377125989570708, guid: 3a78354944caf6c4595edacf4244b950, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -473,6 +481,14 @@ PrefabInstance:
     - target: {fileID: 2230381964620232087, guid: 3a78354944caf6c4595edacf4244b950, type: 3}
       propertyPath: m_Name
       value: DangoAnimals (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721377125989570708, guid: 3a78354944caf6c4595edacf4244b950, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5721377125989570708, guid: 3a78354944caf6c4595edacf4244b950, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
