@@ -8,7 +8,7 @@ public class Character : MonoBehaviour
     float moveSpeed;
     void Start()
     {
-        moveSpeed = 50;
+        moveSpeed = 100;
     }
 
     private void Update()
@@ -17,6 +17,7 @@ public class Character : MonoBehaviour
         float z = Input.GetAxisRaw("Vertical");
 
         moveDir = new Vector3(x,0,z);
+        moveDir.Normalize();
     }
 
 
