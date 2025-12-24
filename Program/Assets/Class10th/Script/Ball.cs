@@ -1,6 +1,11 @@
 using UnityEngine;
 
-public class Ball : MonoBehaviour
+public interface IYadd
+{
+    public void Set_Collision(bool _value);
+}
+
+public class Ball : MonoBehaviour, IYadd
 {
     [SerializeField] private Rigidbody Rigidbody;
     //addForce(πÊ«‚,FocceMode)
@@ -16,7 +21,8 @@ public class Ball : MonoBehaviour
 
     [SerializeField] private Vector3 dir;
     [SerializeField] private ForceMode force;
-
+    [SerializeField] private bool isCollision;
+    [SerializeField] private bool isJump;
 
     private void Awake()
     {
@@ -27,28 +33,44 @@ public class Ball : MonoBehaviour
     {
         dir = Vector3.zero;
         force = ForceMode.Force;
+        isCollision = false;
+        isJump = false;
     }
 
     private void Update()
     {
         float x = Input.GetAxisRaw("Horizontal");
-        float y = Input.GetAxisRaw("Vertical");
+        float z = Input.GetAxisRaw("Vertical");
 
-        dir =  new Vector3 (x,0,y);
+        if(Input.GetKeyDown("space"))
+        {
+            isJump = true;
+        }
+
+        dir = new Vector3(x, 0, z);
         dir.Normalize();
     }
 
     private void FixedUpdate()
     {
-        Rigidbody.AddForce(dir * 5, force);
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("OnTriggerEnter");
+        Rigidbody.AddForce(dir*5,force);
+
+        if (isCollision)
+        {
+            Rigidbody.AddForce(Vector3.up * 12, force);
+        }
+
+        if(isJump)
+        {
+            isJump = false;
+            Rigidbody.AddForce(Vector3.up * 5, ForceMode.Impulse);
+        }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void Set_Collision(bool _value)
     {
-        Debug.Log("OnCollisionEnter");
+        isCollision = _value;
     }
+
+
 }
