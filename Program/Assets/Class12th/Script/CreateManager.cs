@@ -9,9 +9,14 @@ public class CreateManager : MonoBehaviour
     [SerializeField] private float spawnTime;
     [SerializeField] private Vector3 spawnPos;
 
+    [SerializeField] private List<GameObject> spawnList;
+
+    private WaitForSeconds waitFor;
+
     private void Start()
     {
-        //spawn = StartCoroutine(SpawnCoroutine());
+        spawn = StartCoroutine(SpawnCoroutine());
+        waitFor = new WaitForSeconds(spawnTime);
     }
 
     private void OnEnable()
@@ -21,30 +26,29 @@ public class CreateManager : MonoBehaviour
 
     private void Update()
     {
-        spawnTime -= Time.deltaTime;
-        if (spawnTime <= 0)
-        {
-            spawnTime = 5;
-            SpwanCreate();
-        }
+        //spawnTime -= Time.deltaTime;
+        //if (spawnTime <= 0)
+        //{
+        //    spawnTime = 5;
+        //    SpwanCreate();
+        //}
     }
 
     private IEnumerator SpawnCoroutine()
     {
-        while(true)
+        while (true)
         {
             SpwanCreate();
-            yield return new WaitForSeconds(spawnTime);
+            yield return waitFor;
         }
     }
 
 
     private void SpwanCreate()
     {
-        GameObject objClone = Instantiate(prefab);
-        objClone.transform.position = spawnPos;
-        spawnPos += Vector3.left;
-        objClone.transform.Rotate(0, 180f, 0);
+        int randomValue = Random.Range(0, spawnList.Count);
+        GameObject objClone = Instantiate(prefab, spawnList[randomValue].transform.position,
+            Quaternion.Euler(0,180f,0), gameObject.transform);
     }
 
 }
